@@ -10,11 +10,11 @@
 
 int main(int argc, char **argv)
 {
-    FILE *fp;
-    long len;
-    char *buf;
-    clock_t start, end;
-    double diff;
+    FILE *fp;           // File pointer
+    long len;           // File length (in bytes)
+    char *buf;          // Pointer to file buffer
+    clock_t start, end; // Start and end times
+    double diff, dtime; // Difference between start & end and time of execution
 
     if (argc < 3) {
         printf("Incorrect usage!\n");
@@ -91,11 +91,13 @@ done:
     fprintf(fp, "\n};");
 
     end = clock();
-    diff = (double)(end - start);
-    double time = diff / CLOCKS_PER_SEC;
+    diff = (double)end - start;
+    dtime = diff / CLOCKS_PER_SEC;
 
     free(buf);
     fclose(fp);
 
-    printf("Done! (%fs)\n", time);
+    printf("Done! (%fs)\n", dtime);
+
+    return 0;
 }
